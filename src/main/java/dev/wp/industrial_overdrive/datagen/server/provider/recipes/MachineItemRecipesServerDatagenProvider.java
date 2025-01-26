@@ -2,6 +2,7 @@ package dev.wp.industrial_overdrive.datagen.server.provider.recipes;
 
 import aztech.modern_industrialization.MIItem;
 import dev.wp.industrial_overdrive.IO;
+import dev.wp.industrial_overdrive.datagen.api.recipe.RecipeBuilder;
 import dev.wp.industrial_overdrive.datagen.api.recipe.ShapedRecipeBuilder;
 import dev.wp.industrial_overdrive.datagen.api.recipe.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -70,7 +71,7 @@ public final class MachineItemRecipesServerDatagenProvider extends RecipesServer
         addSteelUpgradeMachineRecipes(machine, output);
     }
 
-    private static void processingArray(RecipeOutput output) {
+    private static void multiProcessingArray(RecipeOutput output) {
         addBasicCraftingMachineRecipes(
                 "multi_processing_array",
                 (builder) -> builder
@@ -85,8 +86,25 @@ public final class MachineItemRecipesServerDatagenProvider extends RecipesServer
         );
     }
 
+    private static void pyrolyseOven(RecipeOutput output) {
+        addBasicCraftingMachineRecipes(
+                "pyrolyse_oven",
+                (builder) -> builder
+                        .define('H', "modern_industrialization:advanced_machine_hull")
+                        .define('C', "modern_industrialization:electronic_circuit")
+                        .define('B', "modern_industrialization:bronze_plated_bricks")
+                        .define('O', "modern_industrialization:coke_oven")
+                        .define('M', "modern_industrialization:cupronickel_wire_magnetic")
+                        .pattern("MCM")
+                        .pattern("OHO")
+                        .pattern("BCB"),
+                output
+        );
+    }
+
     @Override
     protected void buildRecipes(RecipeOutput output) {
-        processingArray(output);
+        multiProcessingArray(output);
+        pyrolyseOven(output);
     }
 }

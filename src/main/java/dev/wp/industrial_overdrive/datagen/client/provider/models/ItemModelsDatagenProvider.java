@@ -2,7 +2,6 @@ package dev.wp.industrial_overdrive.datagen.client.provider.models;
 
 import dev.wp.industrial_overdrive.IO;
 import dev.wp.industrial_overdrive.IOItems;
-import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.swedz.tesseract.neoforge.registry.holder.ItemHolder;
@@ -15,8 +14,7 @@ public final class ItemModelsDatagenProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         for (ItemHolder item : IOItems.values()) {
-            ItemModelBuilder itemModelBuilder = this.getBuilder("item/%s".formatted(item.identifier().id()));
-            item.modelBuilder().accept(itemModelBuilder);
+            if(item.hasModelProvider()) item.modelProvider().accept(this);
         }
     }
 

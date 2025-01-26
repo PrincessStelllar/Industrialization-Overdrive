@@ -25,11 +25,7 @@ public final class BlockLootTableDatagenProvider extends BlockLootSubProvider {
 	@Override
 	protected void generate() {
 		for(BlockHolder<?> block : IOBlocks.values()) {
-			if(!block.hasLootTable()) {
-				continue;
-			}
-			
-			this.add(block.get(), block.getLootTableBuilder().apply(this));
+			if(block.hasLootTable()) this.add(block.get(), block.buildLootTable(this));
 		}
 	}
 }

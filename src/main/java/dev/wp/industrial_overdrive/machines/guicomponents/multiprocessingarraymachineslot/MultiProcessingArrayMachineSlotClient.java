@@ -48,7 +48,7 @@ public class MultiProcessingArrayMachineSlotClient implements GuiComponentClient
             @Override
             public boolean mayPlace(ItemStack itemStack)
             {
-                return MultiProcessingArrayMachineSlot.isMachine(itemStack);
+                return MultiProcessingArrayMachineSlot.isMachine(itemStack.getItem());
             }
 
             @Override

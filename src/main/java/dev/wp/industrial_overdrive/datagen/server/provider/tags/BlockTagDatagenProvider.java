@@ -27,8 +27,7 @@ public final class BlockTagDatagenProvider extends BlockTagsProvider
 	}
 	
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return this.getClass().getSimpleName();
 	}
 }

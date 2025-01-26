@@ -1,14 +1,26 @@
 package dev.wp.industrial_overdrive;
 
+import com.google.common.collect.Maps;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
+import java.util.Map;
+
 public class IOTags {
-    public static TagKey<Item> item(String path) {
-        return TagKey.create(BuiltInRegistries.ITEM.key(), IO.id(path));
+
+    private final static Map<TagKey<Item>, String> TRANSLATIONS = Maps.newHashMap();
+
+    public final static class Items {
+        public final static TagKey<Item> MULTI_PROCESSING_ARRAY_BLACKLIST = item("multi_processing_array_blacklist", "Multi Processing Array Blacklist");
+    }
+
+    public static TagKey<Item> item(String path, String englishName) {
+        TagKey<Item> tag = TagKey.create(BuiltInRegistries.ITEM.key(), IO.id(path));
+        TRANSLATIONS.put(tag, englishName);
+        return tag;
     }
 
     public static TagKey<Item> itemCommon(String path) {

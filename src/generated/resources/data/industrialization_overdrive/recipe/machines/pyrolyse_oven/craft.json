@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "modern_industrialization:bronze_plated_bricks"
+    },
+    "C": {
+      "item": "modern_industrialization:electronic_circuit"
+    },
+    "H": {
+      "item": "modern_industrialization:advanced_machine_hull"
+    },
+    "M": {
+      "item": "modern_industrialization:cupronickel_wire_magnetic"
+    },
+    "O": {
+      "item": "modern_industrialization:coke_oven"
+    }
+  },
+  "pattern": [
+    "MCM",
+    "OHO",
+    "BCB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "industrialization_overdrive:pyrolyse_oven"
+  }
+}

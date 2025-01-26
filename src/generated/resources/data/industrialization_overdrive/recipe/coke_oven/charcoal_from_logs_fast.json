@@ -1,0 +1,29 @@
+{
+  "type": "modern_industrialization:coke_oven",
+  "duration": 80,
+  "eu": 8,
+  "fluid_inputs": [
+    {
+      "amount": 250,
+      "fluid": "modern_industrialization:nitrogen"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 1000,
+      "fluid": "modern_industrialization:creosote"
+    }
+  ],
+  "item_inputs": [
+    {
+      "amount": 4,
+      "tag": "minecraft:logs_that_burn"
+    }
+  ],
+  "item_outputs": [
+    {
+      "amount": 5,
+      "item": "minecraft:charcoal"
+    }
+  ]
+}

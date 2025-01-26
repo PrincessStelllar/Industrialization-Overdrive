@@ -5,26 +5,25 @@ import aztech.modern_industrialization.inventory.SlotGroup;
 import aztech.modern_industrialization.machines.MachineBlock;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.blockentities.multiblocks.AbstractElectricCraftingMultiblockBlockEntity;
-import aztech.modern_industrialization.machines.blockentities.multiblocks.FusionReactorBlockEntity;
 import aztech.modern_industrialization.machines.gui.GuiComponent;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
 import dev.wp.industrial_overdrive.IO;
 import dev.wp.industrial_overdrive.IOConfig;
+import dev.wp.industrial_overdrive.IOTags;
 import dev.wp.industrial_overdrive.machines.components.craft.MultiProcessingArrayMachineComponent;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.swedz.tesseract.neoforge.helper.RegistryHelper;
 
 import java.util.Set;
 import java.util.function.Supplier;
 
 public final class MultiProcessingArrayMachineSlot {
     public static final ResourceLocation ID = IO.id("multi_processing_array_machine_slot");
-
-    private static final Set<Class<? extends AbstractElectricCraftingMultiblockBlockEntity>> EXCLUDED_MACHINES = Set.of(
-            FusionReactorBlockEntity.class
-    );
 
     public static int getSlotX(MachineGuiParameters guiParameters) {
         return guiParameters.backgroundWidth + 6;
@@ -34,11 +33,11 @@ public final class MultiProcessingArrayMachineSlot {
         return 106 - (IOConfig.allowUpgradesInMultiProcessingArray ? 0 : 20);
     }
 
-    public static boolean isMachine(ItemStack itemStack) {
-        if (itemStack.getItem() instanceof BlockItem blockItem &&
+    public static boolean isMachine(Item item) {
+        if (item instanceof BlockItem blockItem &&
                 blockItem.getBlock() instanceof MachineBlock machineBlock &&
                 machineBlock.getBlockEntityInstance() instanceof AbstractElectricCraftingMultiblockBlockEntity blockEntity) {
-            return !EXCLUDED_MACHINES.contains(blockEntity.getClass());
+            return !RegistryHelper.holder(BuiltInRegistries.ITEM, item).is(IOTags.Items.MULTI_PROCESSING_ARRAY_BLACKLIST);
         }
         return false;
     }
@@ -99,7 +98,7 @@ public final class MultiProcessingArrayMachineSlot {
 
                         @Override
                         public boolean mayPlace(ItemStack itemStack) {
-                            return isMachine(itemStack);
+                            return isMachine(itemStack.getItem());
                         }
 
                         @Override

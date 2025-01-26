@@ -1,6 +1,8 @@
 package dev.wp.industrial_overdrive.datagen.server;
 
+import dev.wp.industrial_overdrive.datagen.server.provider.datamaps.DataMapDatagenProvider;
 import dev.wp.industrial_overdrive.datagen.server.provider.loottable.BlockLootTableDatagenProvider;
+import dev.wp.industrial_overdrive.datagen.server.provider.recipes.CokeOvenRecipesServerDatagenProvider;
 import dev.wp.industrial_overdrive.datagen.server.provider.recipes.CommonRecipesServerDatagenProvider;
 import dev.wp.industrial_overdrive.datagen.server.provider.recipes.MachineItemRecipesServerDatagenProvider;
 import dev.wp.industrial_overdrive.datagen.server.provider.tags.BlockTagDatagenProvider;
@@ -18,14 +20,17 @@ import java.util.function.Function;
 
 public class DatagenDelegatorServer {
     public static void configure(GatherDataEvent event) {
-    addLootTable(event, BlockLootTableDatagenProvider::new);
+        add(event, DataMapDatagenProvider::new);
 
-    add(event, CommonRecipesServerDatagenProvider::new);
-    add(event, MachineItemRecipesServerDatagenProvider::new);
+        addLootTable(event, BlockLootTableDatagenProvider::new);
 
-    add(event, BlockTagDatagenProvider::new);
-    add(event, ItemTagDatagenProvider::new);
-}
+        add(event, CokeOvenRecipesServerDatagenProvider::new);
+        add(event, CommonRecipesServerDatagenProvider::new);
+        add(event, MachineItemRecipesServerDatagenProvider::new);
+
+        add(event, BlockTagDatagenProvider::new);
+        add(event, ItemTagDatagenProvider::new);
+    }
 
     private static void add(GatherDataEvent event, Function<GatherDataEvent, DataProvider> providerCreator) {
         event.getGenerator().addProvider(event.includeServer(), providerCreator.apply(event));

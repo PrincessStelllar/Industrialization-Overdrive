@@ -49,7 +49,6 @@ public final class IOMIHookRegistry implements MIHookRegistry {
 
     @Override
     public void onBlockEntityRegister(BlockEntityType<?> blockEntityType) {
-
     }
 
     @Override

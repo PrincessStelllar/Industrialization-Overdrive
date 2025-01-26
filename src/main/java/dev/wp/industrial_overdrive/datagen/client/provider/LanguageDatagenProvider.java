@@ -1,16 +1,13 @@
 package dev.wp.industrial_overdrive.datagen.client.provider;
 
-import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.wp.industrial_overdrive.IO;
 import dev.wp.industrial_overdrive.IOItems;
-import dev.wp.industrial_overdrive.IOMachines;
 import dev.wp.industrial_overdrive.IOText;
+import aztech.modern_industrialization.MI;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.swedz.tesseract.neoforge.datagen.mi.MIDatagenHooks;
 import net.swedz.tesseract.neoforge.registry.holder.ItemHolder;
-
-import java.util.Map;
 
 public final class LanguageDatagenProvider extends LanguageProvider {
     public LanguageDatagenProvider(GatherDataEvent event) {
@@ -30,5 +27,8 @@ public final class LanguageDatagenProvider extends LanguageProvider {
         MIDatagenHooks.Client.withLanguageHook(this, IO.ID);
 
         this.add("itemGroup.%s.%s".formatted(IO.ID, IO.ID), IO.NAME);
+
+        this.add("pyro_tier.%s.%s.%s".formatted(IO.ID, MI.ID, "cupronickel_coil"), "Cupronickel");
+        this.add("pyro_tier.%s.%s.%s".formatted(IO.ID, MI.ID, "kanthal_coil"), "Kanthal");
     }
 }

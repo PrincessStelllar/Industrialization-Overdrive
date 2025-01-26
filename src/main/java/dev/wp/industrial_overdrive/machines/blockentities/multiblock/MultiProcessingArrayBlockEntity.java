@@ -41,7 +41,9 @@ public final class MultiProcessingArrayBlockEntity extends AbstractElectricMulti
         super(bep, IO.id("multi_processing_array"), SHAPE_TEMPLATES, MachineTier.LV);
 
         if(!IOConfig.allowUpgradesInMultiProcessingArray) {
-            guiComponents.removeIf((component) -> component instanceof SlotPanel.Server);
+            var slotPanel = guiComponents.get(SlotPanel.Server.class);
+            if(slotPanel != null) guiComponents.unregister(slotPanel);
+
             this.registerGuiComponent(new SlotPanel.Server(this)
                     .withRedstoneControl(redstoneControl)
                     .withOverdrive(overdrive));
@@ -104,8 +106,7 @@ public final class MultiProcessingArrayBlockEntity extends AbstractElectricMulti
         List<Component> lines = Lists.newArrayList();
         lines.add(MICompatibleTextLine.line(IOText.MULTI_PROCESSING_ARRAY_RECIPE));
         lines.add(MICompatibleTextLine.line(IOText.MULTI_PROCESSING_ARRAY_BATCH_SIZE));
-        if(IOConfig.multiProcessingArrayEuCostMultiplier != 1)
-        {
+        if(IOConfig.multiProcessingArrayEuCostMultiplier != 1) {
             lines.add(MICompatibleTextLine.line(IOText.MULTI_PROCESSING_ARRAY_EU_COST_MULTIPLIER).arg(this.getEuCostTransformer(), EU_COST_TRANSFORMER_PARSER));
         }
         return lines;

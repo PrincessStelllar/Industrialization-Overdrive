@@ -1,6 +1,7 @@
 package dev.wp.industrial_overdrive.compat.mi;
 
 import dev.wp.industrial_overdrive.IOMachines;
+import dev.wp.industrial_overdrive.IOTooltips;
 import dev.wp.industrial_overdrive.machines.guicomponents.multiprocessingarraymachineslot.MultiProcessingArrayMachineSlot;
 import dev.wp.industrial_overdrive.machines.guicomponents.multiprocessingarraymachineslot.MultiProcessingArrayMachineSlotClient;
 import net.swedz.tesseract.neoforge.compat.mi.hook.MIHookEntrypoint;
@@ -9,11 +10,6 @@ import net.swedz.tesseract.neoforge.compat.mi.hook.context.listener.*;
 
 @MIHookEntrypoint
 public class IOMIHookListener implements MIHookListener {
-//    @Override
-//    public void blastFurnaceTiers(BlastFurnaceTiersMIHookContext hook) {
-//        IOMachines.blastFurnaceTiers(hook);
-//    }
-
     @Override
     public void clientGuiComponents(ClientGuiComponentsMIHookContext hook) {
         hook.register(MultiProcessingArrayMachineSlot.ID, MultiProcessingArrayMachineSlotClient::new);
@@ -44,13 +40,12 @@ public class IOMIHookListener implements MIHookListener {
 //        IOMachines.singleBlockSpecial(hook);
 //    }
 
-//    @Override
-//    public void tooltips() {
-//        IOTooltips.init();
-//    }
+    @Override
+    public void tooltips() {
+        IOTooltips.init();
+    }
 
 //    @Override
 //    public void viewerSetup(ViewerSetupMIHookContext hook) {
-//        hook.register(new FluidFertilizerCategory());
 //    }
 }

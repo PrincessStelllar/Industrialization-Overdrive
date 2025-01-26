@@ -53,20 +53,15 @@ repositories {
 
 dependencies {
     implementation "aztech:Modern-Industrialization:${modern_industrialization_version}"
-
     implementation "dev.technici4n:GrandPower:${grandpower_version}"
-
     implementation "me.shedaniel.cloth:cloth-config-neoforge:${cloth_config_version}"
-
-    implementation "dev.emi:emi-neoforge:${emi_version}+${minecraft_version}"
-
-    implementation "net.swedz:tesseract-neoforge:${tesseract_version}-${minecraft_version}"
+    implementation "net.swedz:tesseract-api-neoforge:${tesseract_version}-${minecraft_version}"
 
     //compileOnly "net.swedz:mi-tweaks:${mi_tweaks_version}-${minecraft_version}"
     //runtimeOnly "net.swedz:mi-tweaks:${mi_tweaks_version}-${minecraft_version}"
 
     runtimeOnly "net.swedz:extended-industrialization:${extended_industrialization_version}-${minecraft_version}"
-
+    runtimeOnly "dev.emi:emi-neoforge:${emi_version}+${minecraft_version}"
     runtimeOnly "curse.maven:jade-324717:5639932"
 }
 
@@ -186,8 +181,6 @@ tasks.withType(ProcessResources).configureEach {
             mod_credits                           : mod_credits,
             modern_industrialization_version_range: modern_industrialization_version_range,
             tesseract_version_range               : tesseract_version_range,
-            mi_tweaks_version_range               : mi_tweaks_version_range,
-            emi_version_range                     : emi_version_range
     ]
     inputs.properties replaceProperties
 

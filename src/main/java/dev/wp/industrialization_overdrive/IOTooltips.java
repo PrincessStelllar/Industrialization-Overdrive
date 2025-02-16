@@ -15,11 +15,11 @@ public class IOTooltips {
     private static final BiParser<Boolean, Float> MAYBE_SPACED_PERCENTAGE_PARSER = (space, ratio) ->
             Component.literal("%d%s%%".formatted((int) (ratio * 100), space ? " " : "")).withStyle(NUMBER_TEXT);
     public static final Parser<Float> PERCENTAGE_PARSER = (ratio) -> MAYBE_SPACED_PERCENTAGE_PARSER.parse(false, ratio);
-    public static final TooltipAttachment COILS = TooltipAttachment.singleLine(
+    public static final TooltipAttachment COILS_PYRO = TooltipAttachment.singleLine(
             (stack, item) ->
                     item instanceof BlockItem blockItem &&
                             PyrolyseOvenBlockEntity.getTiersByCoil().containsKey(BuiltInRegistries.BLOCK.getKey(blockItem.getBlock())),
-            (stack, item) -> {
+            (flags, ctx, stack, item) -> {
                 PyrolyseOvenBlockEntity.Tier tier = PyrolyseOvenBlockEntity.getTiersByCoil()
                         .get(BuiltInRegistries.BLOCK.getKey(((BlockItem) stack.getItem()).getBlock()));
                 int batchSize = tier.batchSize();

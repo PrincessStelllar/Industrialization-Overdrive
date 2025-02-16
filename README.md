@@ -6,3 +6,4 @@ This mod is also meant to extend the available machines/content in [Extended Ind
 ## Features
 - Machines
   - Multi Processing Array(PA from Extended Industrialization that accepts multiblocks)
+  - Pyrolyse Oven, Electric version of the coke oven, able to run coke oven recipes in batches

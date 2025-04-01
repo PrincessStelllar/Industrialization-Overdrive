@@ -137,6 +137,9 @@ neoForge {
             systemProperty 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
             systemProperty 'mixin.debug.export', 'true'
             systemProperty 'mixin.debug.verbose', 'true'
+
+            systemProperty 'guideme.modern_industrialization.book.sources',
+                    file("src/main/resources/assets/modern_industrialization/mi_guidebook/").absolutePath
         }
 
         server {

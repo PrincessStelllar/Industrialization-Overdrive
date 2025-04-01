@@ -112,13 +112,6 @@ public final class MultiProcessingArrayBlockEntity extends AbstractElectricMulti
         return lines;
     }
 
-    private static final int MAX_MACHINES = 64;
-    private static final int SPLIT = 4;
-    private static final int BASE_MACHINES = 8;
-    private static final int MULT_MACHINES = 2;
-
-    private static final ShapeTemplate[] SHAPE_TEMPLATES;
-
     static {
         SHAPE_TEMPLATES = new ShapeTemplate[SPLIT];
 
@@ -143,12 +136,23 @@ public final class MultiProcessingArrayBlockEntity extends AbstractElectricMulti
                         boolean isCenter = x == 0 && y == 0;
                         boolean isGlass = x != 0 && y == 0;
 
-                        builder.add(x, y, z, isCenter ? pipe : isGlass ? glass : casing, isFront ? front : isTop ? top : isBottom ? bottom : null);
+                        builder.add(x, y, z, isCenter ? pipe : isGlass ? glass : casing, isGlass ? null : isFront ? front : isTop ? top : isBottom ? bottom : null);
                     }
                 }
             }
             SHAPE_TEMPLATES[i] = builder.build();
         }
+    }
+
+    private static final int MAX_MACHINES = 64;
+    private static final int SPLIT = 4;
+    private static final int BASE_MACHINES = 8;
+    private static final int MULT_MACHINES = 2;
+
+    private static final ShapeTemplate[] SHAPE_TEMPLATES;
+
+    public ShapeTemplate getBigShape() {
+        return SHAPE_TEMPLATES[SHAPE_TEMPLATES.length - 1];
     }
 
     public static void registerReiShapes() {

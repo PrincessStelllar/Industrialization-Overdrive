@@ -112,6 +112,13 @@ public final class MultiProcessingArrayBlockEntity extends AbstractElectricMulti
         return lines;
     }
 
+    private static final int MAX_MACHINES = 64;
+    private static final int SPLIT = 4;
+    private static final int BASE_MACHINES = 8;
+    private static final int MULT_MACHINES = 2;
+
+    private static final ShapeTemplate[] SHAPE_TEMPLATES;
+
     static {
         SHAPE_TEMPLATES = new ShapeTemplate[SPLIT];
 
@@ -143,13 +150,6 @@ public final class MultiProcessingArrayBlockEntity extends AbstractElectricMulti
             SHAPE_TEMPLATES[i] = builder.build();
         }
     }
-
-    private static final int MAX_MACHINES = 64;
-    private static final int SPLIT = 4;
-    private static final int BASE_MACHINES = 8;
-    private static final int MULT_MACHINES = 2;
-
-    private static final ShapeTemplate[] SHAPE_TEMPLATES;
 
     public ShapeTemplate getBigShape() {
         return SHAPE_TEMPLATES[SHAPE_TEMPLATES.length - 1];

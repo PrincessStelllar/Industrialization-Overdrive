@@ -38,7 +38,7 @@ public final class MultiProcessingArrayBlockEntity extends AbstractElectricMulti
     private final MultiProcessingArrayMachineComponent machines;
 
     public MultiProcessingArrayBlockEntity(BEP bep) {
-        super(bep, IO.id("multi_processing_array"), SHAPE_TEMPLATES, MachineTier.LV);
+        super(bep, IO.id("multi_processing_array"), SHAPE_TEMPLATES, MachineTier.MULTIBLOCK);
 
         if(!IOConfig.allowUpgradesInMultiProcessingArray) {
             var slotPanel = guiComponents.get(SlotPanel.Server.class);

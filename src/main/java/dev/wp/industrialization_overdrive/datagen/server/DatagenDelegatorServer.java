@@ -2,7 +2,7 @@ package dev.wp.industrialization_overdrive.datagen.server;
 
 import dev.wp.industrialization_overdrive.datagen.server.provider.datamaps.DataMapDatagenProvider;
 import dev.wp.industrialization_overdrive.datagen.server.provider.loottable.BlockLootTableDatagenProvider;
-import dev.wp.industrialization_overdrive.datagen.server.provider.recipes.CokeOvenRecipesServerDatagenProvider;
+import dev.wp.industrialization_overdrive.datagen.server.provider.recipes.PyrolyseOvenRecipes;
 import dev.wp.industrialization_overdrive.datagen.server.provider.recipes.CommonRecipesServerDatagenProvider;
 import dev.wp.industrialization_overdrive.datagen.server.provider.recipes.MachineItemRecipesServerDatagenProvider;
 import dev.wp.industrialization_overdrive.datagen.server.provider.tags.BlockTagDatagenProvider;
@@ -24,7 +24,7 @@ public class DatagenDelegatorServer {
 
         addLootTable(event, BlockLootTableDatagenProvider::new);
 
-        add(event, CokeOvenRecipesServerDatagenProvider::new);
+        add(event, PyrolyseOvenRecipes::new);
         add(event, CommonRecipesServerDatagenProvider::new);
         add(event, MachineItemRecipesServerDatagenProvider::new);
 

@@ -15,6 +15,7 @@ import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import dev.wp.industrialization_overdrive.IO;
+import dev.wp.industrialization_overdrive.IOMachines;
 import dev.wp.industrialization_overdrive.IOText;
 import dev.wp.industrialization_overdrive.datamap.PyrolyseOvenTier;
 import net.minecraft.network.chat.Component;
@@ -49,7 +50,7 @@ public final class PyrolyseOvenBlockEntity extends AbstractElectricMultipliedCra
 
     @Override
     public MachineRecipeType getRecipeType() {
-        return MIMachineRecipeTypes.COKE_OVEN;
+        return IOMachines.RecipeTypes.PYROLYSE_OVEN;
     }
 
     @Override
@@ -65,7 +66,7 @@ public final class PyrolyseOvenBlockEntity extends AbstractElectricMultipliedCra
     @Override
     public List<Component> getTooltips() {
         return List.of(
-                line(TesseractText.MI_MACHINE_BATCHER_RECIPE).arg(true, this.getRecipeType(), MACHINE_RECIPE_TYPE_PARSER),
+                line(TesseractText.MI_MACHINE_BATCHER_RECIPE).arg(true, MIMachineRecipeTypes.COKE_OVEN, MACHINE_RECIPE_TYPE_PARSER),
                 line(IOText.MACHINE_BATCHER_COILS)
         );
     }

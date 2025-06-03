@@ -2,10 +2,13 @@ package dev.wp.industrialization_overdrive;
 
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.compat.rei.machines.ReiMachineRecipes;
+import aztech.modern_industrialization.machines.guicomponents.ProgressBar;
+import aztech.modern_industrialization.machines.init.MultiblockMachines;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import com.google.common.collect.Maps;
 import dev.wp.industrialization_overdrive.machines.blockentities.multiblock.MultiProcessingArrayBlockEntity;
 import dev.wp.industrialization_overdrive.machines.blockentities.multiblock.PyrolyseOvenBlockEntity;
+import dev.wp.industrialization_overdrive.machines.recipe.PyrolyseOvenRecipeType;
 import net.minecraft.resources.ResourceLocation;
 import net.swedz.tesseract.neoforge.compat.mi.hook.context.listener.MachineRecipeTypesMIHookContext;
 import net.swedz.tesseract.neoforge.compat.mi.hook.context.listener.MultiblockMachinesMIHookContext;
@@ -29,9 +32,9 @@ public final class IOMachines {
     public static final class RecipeTypes {
         public static MachineRecipeType PYROLYSE_OVEN;
 
-        private static Map<MachineRecipeType, String> RECIPE_TYPE_NAMES = Maps.newHashMap();
+        private static final Map<MachineRecipeType, String> RECIPE_TYPE_NAMES = Maps.newHashMap();
 
-        public static Map<MachineRecipeType, String> getNames(){
+        public static Map<MachineRecipeType, String> getNames() {
             return RECIPE_TYPE_NAMES;
         }
 
@@ -47,7 +50,7 @@ public final class IOMachines {
     }
 
     public static void recipeTypes(MachineRecipeTypesMIHookContext hook) {
-        RecipeTypes.PYROLYSE_OVEN = RecipeTypes.create(hook, "Pyrolyse Oven", "pyrolyse_oven").withFluidInputs().withFluidOutputs().withItemInputs().withItemOutputs();
+        RecipeTypes.PYROLYSE_OVEN = RecipeTypes.create(hook, "Pyrolyse Oven", "pyrolyse_oven", PyrolyseOvenRecipeType::new).withFluidInputs().withFluidOutputs().withItemInputs().withItemOutputs();
     }
 
     public static void multiblocks(MultiblockMachinesMIHookContext hook) {
@@ -59,10 +62,22 @@ public final class IOMachines {
         );
         hook.register(
                 "Pyrolyse Oven", "pyrolyse_oven", "pyrolyse_oven",
-                BRONZE_PLATED_BRICKS, true,false,false,
+                BRONZE_PLATED_BRICKS, true, false, false,
                 PyrolyseOvenBlockEntity::new
         );
         ReiMachineRecipes.registerWorkstation(MI.id("coke_oven"), IO.id("pyrolyse_oven"));
+
+        registerPyrolyseOvenCategory();
+    }
+
+    private static void registerPyrolyseOvenCategory() {
+        new MultiblockMachines.Rei("Pyrolyse Oven", IO.id("pyrolyse_oven"),
+                IOMachines.RecipeTypes.PYROLYSE_OVEN,
+                new ProgressBar.Parameters(77, 33, "arrow"))
+                .items(inputs -> inputs.addSlot(56, 35), outputs -> outputs.addSlot(102, 35))
+                .fluids(fluids -> fluids.addSlot(36, 35), outputs -> outputs.addSlot(122, 35))
+                .workstations(IO.id("pyrolyse_oven"))
+                .register();
     }
 
 //    public static void singleBlockCrafting(SingleBlockCraftingMachinesMIHookContext hook) {

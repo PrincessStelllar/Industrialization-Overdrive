@@ -1,5 +1,5 @@
 {
-  "type": "modern_industrialization:coke_oven",
+  "type": "industrialization_overdrive:pyrolyse_oven",
   "duration": 160,
   "eu": 8,
   "fluid_outputs": [

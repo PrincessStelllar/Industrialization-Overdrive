@@ -23,7 +23,7 @@ public class PyrolyseOvenRecipeType extends ProxyableMachineRecipeType {
     protected void fillRecipeList(Level world, List<RecipeHolder<MachineRecipe>> recipeList) {
         recipeList.addAll(getManagerRecipes(world));
         for (var cokeOvenRecipe : world.getRecipeManager().getAllRecipesFor(MIMachineRecipeTypes.COKE_OVEN)) {
-            ResourceLocation id = IO.id("/pyrolyse_oven/generated/%s/%s".formatted(cokeOvenRecipe.id().getNamespace(), cokeOvenRecipe.id().getPath()));;
+            ResourceLocation id = IO.id("/pyrolyse_oven/generated/%s/%s".formatted(cokeOvenRecipe.id().getNamespace(), cokeOvenRecipe.id().getPath()));
             recipeList.add(new RecipeHolder<>(id, cokeOvenRecipe.value()));
         }
 

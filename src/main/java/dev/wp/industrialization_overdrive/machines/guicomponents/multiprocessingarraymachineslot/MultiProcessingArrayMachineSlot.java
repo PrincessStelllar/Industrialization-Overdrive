@@ -41,6 +41,10 @@ public final class MultiProcessingArrayMachineSlot {
         return false;
     }
 
+    public static boolean isMachine(ItemStack stack) {
+        return isMachine(stack.getItem());
+    }
+
     public static AbstractElectricCraftingMultiblockBlockEntity getMachine(ItemStack itemStack) {
         return (AbstractElectricCraftingMultiblockBlockEntity) ((MachineBlock) ((BlockItem) itemStack.getItem()).getBlock()).getBlockEntityInstance();
     }

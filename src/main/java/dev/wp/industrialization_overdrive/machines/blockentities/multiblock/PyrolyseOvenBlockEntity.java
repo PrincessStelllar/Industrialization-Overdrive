@@ -38,7 +38,7 @@ import static net.swedz.tesseract.neoforge.compat.mi.tooltip.MICompatibleTextLin
 
 public final class PyrolyseOvenBlockEntity extends AbstractElectricMultipliedCraftingMultiblockBlockEntity {
     public PyrolyseOvenBlockEntity(BEP bep) {
-        super(bep, IO.id("pyrolyse_oven"), SHAPE_TEMPLATES, MachineTier.LV);
+        super(bep, IO.id("pyrolyse_oven"), SHAPE_TEMPLATES, MachineTier.MULTIBLOCK);
         List<Component> tierComponents = TIERS.stream().map(PyrolyseOvenBlockEntity.Tier::getDisplayName).toList();
         this.registerGuiComponent(CommonGuiComponents.rangedShapeSelection(this, activeShape, tierComponents, true));
     }

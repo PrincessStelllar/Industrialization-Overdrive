@@ -1,5 +1,6 @@
 package dev.wp.industrialization_overdrive;
 
+import dev.wp.industrialization_overdrive.compat.AE2Integration;
 import dev.wp.industrialization_overdrive.machines.blockentities.multiblock.PyrolyseOvenBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -35,6 +36,7 @@ public final class IO {
         IOConfig.loadConfig();
         bus.addListener(FMLCommonSetupEvent.class, (event) -> IOConfig.loadConfig());
 
+        IOComponents.init(bus);
         IOItems.init(bus);
         IOBlocks.init(bus);
         IOOtherRegistries.init(bus);
@@ -42,6 +44,7 @@ public final class IO {
         bus.addListener(FMLCommonSetupEvent.class, (event) -> {
             IOItems.values().forEach(ItemHolder::triggerRegistrationListener);
             IOBlocks.values().forEach(BlockHolder::triggerRegistrationListener);
+            if (IOUtil.isAE2Loaded) AE2Integration.registerItems();
         });
 
         bus.addListener(RegisterCapabilitiesEvent.class, (event) -> CapabilitiesListeners.triggerAll(ID, event));

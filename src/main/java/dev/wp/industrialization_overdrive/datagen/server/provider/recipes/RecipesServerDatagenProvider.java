@@ -10,6 +10,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.swedz.tesseract.neoforge.compat.mi.recipe.MIMachineRecipeBuilder;
 import net.swedz.tesseract.neoforge.helper.RecipeHelper;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -42,6 +43,7 @@ public abstract class RecipesServerDatagenProvider extends RecipeProvider {
         addMaterialMachineRecipe(material, name, recipeType, eu, (int) (200 * material.get(HARDNESS).timeFactor), recipeBuilder, output);
     }
 
+    @NotNull
     @Override
     public String getName() {
         return this.getClass().getSimpleName();

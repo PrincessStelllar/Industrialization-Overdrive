@@ -9,7 +9,12 @@ public enum IOText implements TranslatableTextEnum {
     MULTI_PROCESSING_ARRAY_RECIPE("Can run recipes of any electric crafting multiblock provided to it in batches."),
     MULTI_PROCESSING_ARRAY_SIZE("Machines: %d"),
     MACHINE_BATCHER_COILS("Batch size and cost is determined by coil used."),
-    COILS_PYRO_TIER("Runs Pyrolyse Oven in batches of up to %d at %s the EU cost.");
+    COILS_PYRO_TIER("Runs Pyrolyse Oven in batches of up to %d at %s the EU cost."),
+    TERMINAL_HELP_1("- Press %s + %s on a MI multiblock to automatically build it."),
+    TERMINAL_HELP_2("- Requires parts to be in your inventory."),
+    TERMINAL_HELP_2_ALT("- Requires parts to be in your inventory or a linked ME system."),
+    TERMINAL_LINK_INFO("Linked to an ME system at %s."),
+    TERMINAL_LINK_NOT_LINKED("Not linked to an ME system.");
 
     private final String englishText;
 

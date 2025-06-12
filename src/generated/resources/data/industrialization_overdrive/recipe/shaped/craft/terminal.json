@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "modern_industrialization:diode"
+    },
+    "E": {
+      "item": "modern_industrialization:electronic_circuit"
+    },
+    "G": {
+      "tag": "c:glass_panes"
+    },
+    "T": {
+      "item": "modern_industrialization:transistor"
+    }
+  },
+  "pattern": [
+    "DGD",
+    "TET"
+  ],
+  "result": {
+    "count": 1,
+    "id": "industrialization_overdrive:terminal"
+  }
+}

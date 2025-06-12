@@ -1,10 +1,12 @@
 package dev.wp.industrialization_overdrive;
 
 import com.google.common.collect.Sets;
+import dev.wp.industrialization_overdrive.item.Terminal;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.swedz.tesseract.neoforge.registry.SortOrder;
+import net.swedz.tesseract.neoforge.registry.common.CommonModelBuilders;
 import net.swedz.tesseract.neoforge.registry.holder.ItemHolder;
 
 import java.util.Set;
@@ -27,6 +29,8 @@ public final class IOItems {
     public static void init(IEventBus bus) {
         Registry.init(bus);
     }
+
+    public static final ItemHolder<Terminal> TERMINAL = create("terminal", "Terminal", Terminal::new, IOSortOrder.GEAR).withModelBuilder(CommonModelBuilders::generated).register();
 
     public static Set<ItemHolder> values() {
         return Set.copyOf(Registry.HOLDERS);
